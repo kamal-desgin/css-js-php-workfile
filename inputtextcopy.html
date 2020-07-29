@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style>		
+	.copyButton {
+		position: absolute;
+		right: 5px;
+		top: 10px;
+		padding: 3px;
+	}
+	</style>
+</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-offset-md-3">
+					<div class="form-group">
+						<input type="text" class="form-control linkToCopy" value="Hello World 1">
+						<button class="copyButton">&#10070;</button>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control linkToCopy" value="Hello World 2"  >
+						<button class="copyButton">&#10070;</button>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control linkToCopy" value="Hello World 3">
+						<button class="copyButton">&#10070;</button>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control linkToCopy" value="Hello World 4">
+						<button class="copyButton">&#10070;</button>
+					</div>
+					<div class="form-group">
+						<textarea rows="5" class="form-control"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+		//input values copy
+		$(document).ready(function(){
+			$('button.copyButton').click(function(event){
+				event.preventDefault();
+				$(this).siblings('input.linkToCopy').select(); //select input      
+				document.execCommand("copy"); //input copy
+			});	
+			/*
+			//TODO: this code working for multiple dynamic add remove button textcopy
+			
+			//input text copy
+    			//alter used
+				$('body').on('click',"button.copyButton", function(e){
+    			//first	$('button.copyButton').click(function(e){
+        			    e.preventDefault();
+        				$(this).siblings('input.textCopy').select();      
+        				document.execCommand("copy");
+        			});
+			
+			*/
+			
+			
+		});
+		</script>	
+	</body>
+</html>
+
+https://acsioffice.com/iOffice/wadmin/new_clients.php?ac=new
+
+
+
+	

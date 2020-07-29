@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  
+  <script>
+	$(function() {
+  $('.datepicker').datepicker();
+});
+  </script>
+  
+</head>
+<body>
+
+<div class="container">
+
+<br>
+<hr>
+<h3>Dynamic input field Method : 1 </h3>
+<form>
+	<div class="col-lg-12"> 
+		<div id="collected_dynamic" class="col-md-12 col-sm-12 col-xs-12" style="padding:0;">
+	 <!--Dynamic Input fieldset START-->
+	</div> 
+	
+		<div class="form-group bottom_form col-md-4">
+			<label for="collection_date" class="sr-only">Date</label>
+			<div class="input-group">
+			  <div class="input-group-btn">
+				<button type="button" class="btn btn-success" id="add"><i class="fa fa-plus"></i></button>
+			  </div>
+			  <input type="text" class="datepicker form-control"  id="collection_date" name="collection_date" placeholder="Date"  value="" readonly required />
+			</div>
+		</div>
+		<div class="form-label-group col-sm-4">
+			<input type="text" class="form-control" name="collected_amt" id="collected_amt" placeholder="Collection Amt" style="text-align:right" required />
+			<label for="collected_amt">Collection Amt</label>
+		</div>										
+		<div class="form-label-group col-sm-4">
+			<input type="text" class="form-control" id="tds_amt" name="tds_amt" value="TDS Amount" style="text-align:right" placeholder="Place of Supply"  />
+			<label for="tds_amt">TDS Amount</label>
+		</div>
+	  
+      <div class="collected_template"> 
+        <div class="collected_detail">						
+          <fieldset>
+            <div class="form-group bottom_form col-md-4">
+              <label for="collection_date" class="sr-only">Date</label>
+              <div class="input-group">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></button>
+                </div>
+                <input type="text" class="datepicker form-control" id="collection_date" name="collection_date" placeholder="Date"  readonly required />
+              </div>
+            </div>
+            <div class="form-label-group col-sm-4">
+              <input type="text" class="form-control dncollamt" name="collected_amt" id="collected_amt" placeholder="Collection Amt" style="text-align:right" required />
+              <label for="collected_amt">Collection Amt</label>
+            </div>										
+            <div class="form-label-group col-sm-4">
+              <input type="text" class="form-control dntdsamt" id="tds_amt" name="tds_amt" value="TDS Amount" style="text-align:right" placeholder="Place of Supply"  />
+              <label for="tds_amt">TDS Amount</label>
+            </div>	
+          </fieldset>
+        </div>
+      </div> <!--Dynamic Input fieldset END-->
+	 
+	
+									
+      
+	</div>									
+</form>
+
+	<script>
+		$(document).ready(function () {
+			function initTemplates() {
+				$('.collected_template').each(function () {
+					var template_collected = $(this).children(),
+					key = template_collected.attr('class') || template_collected.attr('id') + 'template_collected' + template_collected.length;
+					templates[key] = template_collected;
+					$(this).remove();
+				});
+			}
+			var templates = {};
+			initTemplates();														
+			//when the Add Field button is clicked
+			$("#add").click(function () {
+				$('#collected_dynamic').append(templates['collected_detail'].clone());
+			});    
+			//Click function on delete button
+			$(document).on('click', '#delete', function () {
+				$(this).closest("fieldset").remove();
+			});    
+		});
+	</script>	
+
+<br>
+<hr>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<h3>Dynamic input field Method : 2 </h3>
+			<form>
+				<div class="field_wrapper">		
+					<div class="form-group bottom_form col-md-4">
+						<label for="collection_date" class="sr-only">Date</label>
+						<div class="input-group">
+						  <div class="input-group-btn">
+							<button type="button" class="btn btn-success add_button"><i class="fa fa-plus"></i></button>
+						  </div>
+						  <input type="text" class="datepicker form-control"  id="collection_date" name="collection_date[]" placeholder="Date"  value="" readonly required />
+						</div>
+					</div>
+					<div class="form-label-group col-sm-4">
+						<input type="text" class="form-control" name="collected_amt" id="collected_amt" placeholder="Collection Amt" style="text-align:right" required />
+						<label for="collected_amt">Collection Amt</label>
+					</div>										
+					<div class="form-label-group col-sm-4">
+						<input type="text" class="form-control" id="tds_amt" name="tds_amt" value="TDS Amount" style="text-align:right" placeholder="Place of Supply"  />
+						<label for="tds_amt">TDS Amount</label>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var maxField = 10; //Input limitation
+				var addButton = $('.add_button'); //Add button selector
+				var wrapper = $('.field_wrapper'); //Input field wrapper
+				var fieldHTML = '<div class="dynamic"><div class="form-group bottom_form col-md-4"><label for="collection_date" class="sr-only">Date</label><div class="input-group"><div class="input-group-btn"><button type="button" class="btn btn-danger remove_button"><i class="fa fa-trash"></i></button></div> <input type="text" class="datepicker form-control"  id="collection_date" name="collection_date[]" placeholder="Date"  value="" readonly required /></div></div> <div class="form-label-group col-sm-4"><input type="text" class="form-control" name="collected_amt" id="collected_amt" placeholder="Collection Amt" style="text-align:right" required /><label for="collected_amt">Collection Amt</label></div><div class="form-label-group col-sm-4"><input type="text" class="form-control" id="tds_amt" name="tds_amt" value="TDS Amount" style="text-align:right" placeholder="Place of Supply"/><label for="tds_amt">TDS Amount</label></div></div>'; //New input field html 
+				var x = 1; //Initial field counter is 1
+				
+				//Once add button is clicked
+				$(addButton).click(function(){
+					//Check maximum number of input fields
+					if(x < maxField){ 
+						x++; //Increment field counter
+						$(wrapper).append(fieldHTML); //Add field html
+					}
+				});
+				
+				//Once remove button is clicked
+				$(wrapper).on('click', '.remove_button', function(e){
+					e.preventDefault();
+					$(this).closest('.dynamic').remove(); //Remove field html
+					x--; //Decrement field counter
+				});
+			});
+		</script>
+	</div>
+</div>
+
+
+<br>
+<hr>
+
+<div class="container">
+	<div class="row">
+		<h3> Dynamic Input fields : 3</h3>
+		<div class="col-lg-12">
+			<form>
+				<div id="dynamicField">
+					  <div class="section">
+						<fieldset>
+							<div class="form-group bottom_form col-md-4">
+								<label for="collection_date">Date</label>
+								<div class="input-group">
+								  <div class="input-group-btn">
+									<button type="button" class="btn btn-success addsection"><i class="fa fa-plus"></i></button>
+								  </div>
+								  <input type="text" class="datepicker form-control"  id="collection_date" name="collection_date[]" placeholder="Date"  value="" readonly required />
+								</div>
+							</div>
+							<div class="form-group col-sm-4">
+								<label for="collected_amt">Collection Amt</label>
+								<input type="text" class="form-control" name="collected_amt" id="collected_amt" placeholder="Collection Amt" style="text-align:right" required />
+							</div>										
+							<div class="form-group col-sm-4">
+								<label for="tds_amt">TDS Amount</label>
+								<input type="text" class="form-control" id="tds_amt" name="tds_amt" value="TDS Amount" style="text-align:right" placeholder="Place of Supply"  />
+							</div>
+						</fieldset>					 
+					  </div>
+					</div>
+			</form>
+			<script>
+				$(document).ready(function(){
+					//define template
+					var template = $('#dynamicField .section:first').clone();
+					//define counter
+					var sectionsCount = 1;
+					//add new section
+					$('body').on('click', '.addsection', function() {
+						sectionsCount++;
+						//loop through each input
+							var section = template.clone().find(':input').each(function(){
+							var newId = this.id + sectionsCount;
+							//update for label
+							$(this).prev().attr('for', newId);
+
+							$('button').removeClass('btn-success addsection').addClass('btn-danger removesection').html('<i class="fa fa-trash"></i>')
+						}).end()
+
+						//inject new section
+						.appendTo('#dynamicField');
+						//initialize datePicker on last name=date[] element in HTML DOM
+						$("input[name='collection_date[]']").last().datepicker();
+						return false;
+					});
+					//init original datePicker in HTML DOM
+					$("input[name='collection_date[]']").last().datepicker();
+					//remove section
+					$(document).on('click', '.removesection', function() {
+						$(this).closest("fieldset").remove();
+					});   
+
+						<!-- or -->
+						$('body').on('focus',".datepicker", function(){
+							$(this).datepicker();
+						});​
+				});
+			</script>
+
+			
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
