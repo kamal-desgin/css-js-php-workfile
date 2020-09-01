@@ -4,8 +4,13 @@
 
 <!--count from and to no fo days -->
 <?php
-$startTimeStamp = strtotime("2020/07/01");
-$endTimeStamp = strtotime("2020/07/17");
+date_default_timezone_set('Asia/Kolkata');
+$time = date("h:i A",strtotime("+0 HOURS"));
+$date = date("M-d-Y");
+	
+	
+$startTimeStamp = strtotime("2020/10/01");
+$endTimeStamp = strtotime("2020/10/17");
 
 $timeDiff = abs($endTimeStamp - $startTimeStamp);
 
@@ -14,6 +19,16 @@ $numberDays = $timeDiff/86400;  // 86400 seconds in one day
 // and you might want to convert to integer
 echo $numberDays = intval($numberDays);
 //output: 16
+?>
+
+<?php 
+	$startTimeStamp = strtotime($date); //today date
+	$endTimeStamp = strtotime($endTimeStamp); //end date
+	$timeDiff = abs($endTimeStamp - $startTimeStamp);
+	$numberDays = $timeDiff/86400;  // 86400 seconds in one day
+	echo $numberDays = intval($numberDays);
+	//output: 16
+	
 ?>
 
 <!-- one month for date display -->
