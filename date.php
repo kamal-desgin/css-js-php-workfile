@@ -94,8 +94,20 @@ $date = date('Y-m-d', strtotime("last day of next month",strtotime($date)));
 echo $date;
 ?>
 
+<!-- date 0000-00-00 -->
+<?php
 
+$dateset = '0000-00-00';
+$datecurrent = '2020-09-01'; 
 
+if($datecurrent == '0000-00-00' || $datecurrent == NULL) 
+{
+	echo $dateset = '0000-00-00';
+} 
+else {
+	echo $new = '2020-02-15';
+}
+?>
 
 </body>
 </html>
