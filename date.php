@@ -96,18 +96,21 @@ echo $date;
 
 <!-- date 0000-00-00 -->
 <?php
+	/* set date 0000-00-00 save mysql */
+	mysql> SET sql_mode = 'allow_invalid_dates';
+	mysql> SET GLOBAL sql_mode = '';
 
-$dateset = '0000-00-00';
-$datecurrent = '2020-09-01'; 
-
-if($datecurrent == '0000-00-00' || $datecurrent == NULL) 
-{
-	echo $dateset = '0000-00-00';
-} 
-else {
-	echo $new = '2020-02-15';
-}
+	$datecurrent =  $_POST['duedate'];
+	if($datecurrent  == '0000-00-00' || $datecurrent == NULL) 
+	{	
+	  echo $duedate = '0000-00-00';
+	} 
+	else {
+	 echo $duedate = $datecurrent;
+	}
 ?>
+
+
 
 </body>
 </html>
